@@ -11,7 +11,7 @@ type LanguageObject = {
 };
 
 type TranslationParams = {
-    [key: string]: string | number
+    [key: string]: string | number;
 };
 
 export class Translator {
@@ -136,6 +136,14 @@ export class Translator {
         }
 
         return languageFound;
+    }
+
+    /**
+     * Get the current language
+     * @returns {Language} Current language
+     */
+    public getCurrentLanguage(): Language {
+        return this.currentLanguage;
     }
 
     /**
