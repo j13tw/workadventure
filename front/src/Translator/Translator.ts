@@ -1,5 +1,4 @@
 import { FALLBACK_LANGUAGE } from "../Enum/EnvironmentVariable";
-import { getCookie } from "../Utils/Cookies";
 
 export type Language = {
     language: string;
@@ -106,7 +105,7 @@ export class Translator {
             );
 
             if (!languageObject) {
-                return reject();
+                return reject(new Error("Language not found in cache"));
             }
 
             this.currentLanguageObject = languageObject as LanguageObject;
@@ -151,13 +150,13 @@ export class Translator {
      */
     private defineCurrentLanguage() {
         const navigatorLanguage: string | undefined = navigator.language;
-        const cookieLanguage = getCookie("language");
+        const localStorageLanguage = localStorage.getItem("language");
         let currentLanguage = undefined;
 
-        if (cookieLanguage && typeof cookieLanguage === "string") {
-            const cookieLanguageObject = Translator.getLanguageByString(cookieLanguage);
-            if (cookieLanguageObject) {
-                currentLanguage = cookieLanguageObject;
+        if (localStorageLanguage && typeof localStorageLanguage === "string") {
+            const localStorageLanguageObject = Translator.getLanguageByString(localStorageLanguage);
+            if (localStorageLanguageObject) {
+                currentLanguage = localStorageLanguageObject;
             }
         }
 
@@ -223,7 +222,7 @@ export class Translator {
     /**
      * Get translation by a key and formatted with params by {{ }} tag
      * @param {string} key Translation key
-     * @param {{ [key: string]: string | number }} params Tags to replace by value
+     * @param {TranslationParams} params Tags to replace by value
      * @returns {string} Translation formatted
      */
     public trans(key: string, params?: TranslationParams): string {
@@ -245,10 +244,10 @@ export class Translator {
     /**
      * Get translation by a key and formatted with params by {{ }} tag
      * @param {string} key Translation key
-     * @param {{ [key: string]: string | number }} params Tags to replace by value
+     * @param {TranslationParams} params Tags to replace by value
      * @returns {string} Translation formatted
      */
-    public static trans(key: string, params?: { [key: string]: string | number }): string {
+    public static trans(key: string, params?: TranslationParams): string {
         const instance = Translator.getInstance();
         return instance.trans(key, params);
     }
