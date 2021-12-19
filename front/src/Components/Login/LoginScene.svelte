@@ -4,6 +4,7 @@
     import { DISPLAY_TERMS_OF_USE, MAX_USERNAME_LENGTH } from "../../Enum/EnvironmentVariable";
     import logoImg from "../images/logo.png";
     import { gameManager } from "../../Phaser/Game/GameManager";
+    import { Translator } from "../../Translator/Translator";
 
     export let game: Game;
 
@@ -27,7 +28,7 @@
         <img src={logoImg} alt="WorkAdventure logo" />
     </section>
     <section class="text-center">
-        <h2>Enter your name</h2>
+        <h2>{Translator.trans("login.input.name.placeholder")}</h2>
     </section>
     <!-- svelte-ignore a11y-autofocus -->
     <input
@@ -44,22 +45,21 @@
     />
     <section class="error-section">
         {#if name.trim() === "" && startValidating}
-            <p class="err">The name is empty</p>
+            <p class="err">{Translator.trans("login.input.name.empty")}</p>
         {/if}
     </section>
 
     {#if DISPLAY_TERMS_OF_USE}
         <section class="terms-and-conditions">
             <p>
-                By continuing, you are agreeing our <a href="https://workadventu.re/terms-of-use" target="_blank"
-                    >terms of use</a
-                >, <a href="https://workadventu.re/privacy-policy" target="_blank">privacy policy</a> and
-                <a href="https://workadventu.re/cookie-policy" target="_blank">cookie policy</a>.
+                {Translator.trans("login.terms")}
             </p>
         </section>
     {/if}
     <section class="action">
-        <button type="submit" class="nes-btn is-primary loginSceneFormSubmit">Continue</button>
+        <button type="submit" class="nes-btn is-primary loginSceneFormSubmit"
+            >{Translator.trans("login.continue")}</button
+        >
     </section>
 </form>
 

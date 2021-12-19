@@ -1,6 +1,7 @@
 <script lang="ts">
     import { showReportScreenStore, userReportEmpty } from "../../Stores/ShowReportScreenStore";
     import { gameManager } from "../../Phaser/Game/GameManager";
+    import { Translator } from "../../Translator/Translator";
 
     export let userUUID: string | undefined;
     let reportMessage: string;
@@ -22,18 +23,20 @@
 </script>
 
 <div class="report-container-main">
-    <h3>Report</h3>
-    <p>Send a report message to the administrators of this room. They may later ban this user.</p>
+    <h3>{Translator.trans("report.title")}</h3>
+    <p>{Translator.trans("report.message")}</p>
     <form>
         <section>
             <label>
-                <span>Your message: </span>
+                <span>{Translator.trans("report.message.title")}</span>
                 <textarea type="text" class="nes-textarea" bind:value={reportMessage} />
             </label>
-            <p hidden={hiddenError}>Report message cannot to be empty.</p>
+            <p hidden={hiddenError}>{Translator.trans("report.message.empty")}</p>
         </section>
         <section>
-            <button type="submit" class="nes-btn is-error" on:click={submitReport}>Report this user</button>
+            <button type="submit" class="nes-btn is-error" on:click={submitReport}
+                >{Translator.trans("report.submit")}</button
+            >
         </section>
     </form>
 </div>

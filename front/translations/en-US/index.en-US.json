@@ -1,5 +1,7 @@
 {
     "language": "English",
     "country": "United States",
-    "default": true
+    "default": true,
+
+    "close": "Close"
 }

@@ -2,6 +2,7 @@
     import { fly } from "svelte/transition";
     import { userIsAdminStore, limitMapStore } from "../../Stores/GameStore";
     import { ADMIN_URL } from "../../Enum/EnvironmentVariable";
+    import { Translator } from "../../Translator/Translator";
 
     const upgradeLink = ADMIN_URL + "/pricing";
     const registerLink = ADMIN_URL + "/second-step-register";
@@ -9,19 +10,17 @@
 
 <main class="warningMain" transition:fly={{ y: -200, duration: 500 }}>
     {#if $userIsAdminStore}
-        <h2>Warning!</h2>
+        <h2>{Translator.trans("warning.title")}</h2>
         <p>
-            This world is close to its limit!. You can upgrade its capacity <a href={upgradeLink} target="_blank"
-                >here</a
-            >
+            {Translator.trans("warning.content", {upgradeLink})}
         </p>
     {:else if $limitMapStore}
         <p>
             This map is available for 2 days. You can register your domain <a href={registerLink}>here</a>!
         </p>
     {:else}
-        <h2>Warning!</h2>
-        <p>This world is close to its limit!</p>
+        <h2>{Translator.trans("warning.title")}</h2>
+        <p>{Translator.trans("warning.limit")}</p>
     {/if}
 </main>
 

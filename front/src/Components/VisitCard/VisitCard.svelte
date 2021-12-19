@@ -2,6 +2,7 @@
     import { fly } from "svelte/transition";
     import { requestVisitCardsStore } from "../../Stores/GameStore";
     import { onMount } from "svelte";
+    import { Translator } from "../../Translator/Translator";
 
     export let visitCardUrl: string;
     let w = "500px";
@@ -40,7 +41,7 @@
     />
     {#if !hidden}
         <div class="buttonContainer">
-            <button class="nes-btn is-popUpElement" on:click={closeCard}>Close</button>
+            <button class="nes-btn is-popUpElement" on:click={closeCard}>{Translator.trans("close")}</button>
         </div>
     {/if}
 </section>
