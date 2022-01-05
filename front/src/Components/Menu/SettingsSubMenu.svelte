@@ -2,8 +2,8 @@
     import { localUserStore } from "../../Connexion/LocalUserStore";
     import { videoConstraintStore } from "../../Stores/MediaStore";
     import { HtmlUtils } from "../../WebRtc/HtmlUtils";
-    import { isMobile } from "../../Enum/EnvironmentVariable";
     import { menuVisiblilityStore } from "../../Stores/MenuStore";
+    import { isMediaBreakpointUp } from "../../Utils/BreakpointsUtils";
 
     let fullscreen: boolean = localUserStore.getFullscreen();
     let notification: boolean = localUserStore.getNotification() === "granted";
@@ -69,6 +69,8 @@
     function closeMenu() {
         menuVisiblilityStore.set(false);
     }
+
+    const isMobile = isMediaBreakpointUp("md");
 </script>
 
 <div class="settings-main" on:submit|preventDefault={saveSetting}>
@@ -76,12 +78,11 @@
         <h3>Game quality</h3>
         <div class="nes-select is-dark">
             <select bind:value={valueGame}>
-                <option value={120}>{isMobile() ? "High (120 fps)" : "High video quality (120 fps)"}</option>
-                <option value={60}
-                    >{isMobile() ? "Medium (60 fps)" : "Medium video quality (60 fps, recommended)"}</option
+                <option value={120}>{isMobile ? "High (120 fps)" : "High video quality (120 fps)"}</option>
+                <option value={60}>{isMobile ? "Medium (60 fps)" : "Medium video quality (60 fps, recommended)"}</option
                 >
-                <option value={40}>{isMobile() ? "Minimum (40 fps)" : "Minimum video quality (40 fps)"}</option>
-                <option value={20}>{isMobile() ? "Small (20 fps)" : "Small video quality (20 fps)"}</option>
+                <option value={40}>{isMobile ? "Minimum (40 fps)" : "Minimum video quality (40 fps)"}</option>
+                <option value={20}>{isMobile ? "Small (20 fps)" : "Small video quality (20 fps)"}</option>
             </select>
         </div>
     </section>
@@ -89,12 +90,11 @@
         <h3>Video quality</h3>
         <div class="nes-select is-dark">
             <select bind:value={valueVideo}>
-                <option value={30}>{isMobile() ? "High (30 fps)" : "High video quality (30 fps)"}</option>
-                <option value={20}
-                    >{isMobile() ? "Medium (20 fps)" : "Medium video quality (20 fps, recommended)"}</option
+                <option value={30}>{isMobile ? "High (30 fps)" : "High video quality (30 fps)"}</option>
+                <option value={20}>{isMobile ? "Medium (20 fps)" : "Medium video quality (20 fps, recommended)"}</option
                 >
-                <option value={10}>{isMobile() ? "Minimum (10 fps)" : "Minimum video quality (10 fps)"}</option>
-                <option value={5}>{isMobile() ? "Small (5 fps)" : "Small video quality (5 fps)"}</option>
+                <option value={10}>{isMobile ? "Minimum (10 fps)" : "Minimum video quality (10 fps)"}</option>
+                <option value={5}>{isMobile ? "Small (5 fps)" : "Small video quality (5 fps)"}</option>
             </select>
         </div>
     </section>
@@ -143,6 +143,8 @@
 </div>
 
 <style lang="scss">
+    @import "../../../style/breakpoints.scss";
+
     div.settings-main {
         height: calc(100% - 40px);
         overflow-y: auto;
@@ -176,7 +178,7 @@
         }
     }
 
-    @media only screen and (max-width: 800px), only screen and (max-height: 800px) {
+    @include media-breakpoint-up(md) {
         div.settings-main {
             section {
                 padding: 0;

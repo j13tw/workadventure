@@ -21,7 +21,7 @@
 <form
     class="helpCameraSettings nes-container"
     on:submit|preventDefault={close}
-    transition:fly={{ y: -900, duration: 500 }}
+    transition:fly={{ y: -50, duration: 500 }}
 >
     <section>
         <h2>Camera / Microphone access needed</h2>
@@ -53,9 +53,12 @@
         background: #eceeee;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 10vh;
+        left: 0;
+        right: 0;
+        margin-top: 4%;
         max-height: 80vh;
         max-width: 80vw;
+        z-index: 250;
         overflow: auto;
         text-align: center;
 

@@ -126,6 +126,8 @@
 </form>
 
 <style lang="scss">
+    @import "../../../style/breakpoints.scss";
+
     .enableCameraScene {
         pointer-events: auto;
         margin: 20px auto 0;
@@ -213,7 +215,7 @@
         }
     }
 
-    @media only screen and (max-width: 800px) {
+    @include media-breakpoint-up(md) {
         .enableCameraScene h2 {
             font-size: 80%;
         }

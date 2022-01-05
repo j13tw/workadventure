@@ -26,8 +26,6 @@ export const POSTHOG_URL = process.env.POSTHOG_URL || undefined;
 export const DISABLE_ANONYMOUS: boolean = process.env.DISABLE_ANONYMOUS === "true";
 export const OPID_LOGIN_SCREEN_PROVIDER = process.env.OPID_LOGIN_SCREEN_PROVIDER;
 
-export const isMobile = (): boolean => window.innerWidth <= 800 || window.innerHeight <= 600;
-
 export {
     DEBUG_MODE,
     START_ROOM_URL,

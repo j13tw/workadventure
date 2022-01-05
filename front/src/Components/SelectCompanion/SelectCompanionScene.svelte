@@ -46,6 +46,8 @@
 </form>
 
 <style lang="scss">
+    @import "../../../style/breakpoints.scss";
+
     form.selectCompanionScene {
         font-family: "Press Start 2P";
         pointer-events: auto;
@@ -84,7 +86,7 @@
         }
     }
 
-    @media only screen and (max-width: 800px) {
+    @include media-breakpoint-up(md) {
         form.selectCompanionScene button.selectCharacterButtonLeft {
             left: 5vw;
         }

@@ -3,7 +3,7 @@
     import { emoteStore, emoteMenuStore } from "../../Stores/EmoteStore";
     import { onDestroy, onMount } from "svelte";
     import { EmojiButton } from "@joeattardi/emoji-button";
-    import { isMobile } from "../../Enum/EnvironmentVariable";
+    import { isMediaBreakpointUp } from "../../Utils/BreakpointsUtils";
 
     let emojiContainer: HTMLElement;
     let picker: EmojiButton;
@@ -16,7 +16,7 @@
             styleProperties: {
                 "--font": "Press Start 2P",
             },
-            emojisPerRow: isMobile() ? 6 : 8,
+            emojisPerRow: isMediaBreakpointUp("md") ? 6 : 8,
             autoFocusSearch: false,
             style: "twemoji",
         });
@@ -64,6 +64,8 @@
         height: 100%;
         justify-content: center;
         align-items: center;
+        position: absolute;
+        z-index: 101;
     }
 
     .emote-menu {

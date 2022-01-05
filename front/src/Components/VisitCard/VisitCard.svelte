@@ -56,6 +56,7 @@
         height: 120px;
         margin: auto;
         animation: spin 2s linear infinite;
+        z-index: 102;
     }
 
     @keyframes spin {

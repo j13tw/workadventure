@@ -79,6 +79,8 @@
 </form>
 
 <style lang="scss">
+    @import "../../../style/breakpoints.scss";
+
     form.customCharacterScene {
         font-family: "Press Start 2P";
         pointer-events: auto;
@@ -125,7 +127,7 @@
         }
     }
 
-    @media only screen and (max-width: 800px) {
+    @include media-breakpoint-up(md) {
         form.customCharacterScene button.customCharacterSceneButtonLeft {
             left: 5vw;
         }
