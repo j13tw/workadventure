@@ -1,7 +1,7 @@
 <script lang="typescript">
     import { onMount } from "svelte";
     import { audioManagerVisibilityStore } from "../Stores/AudioManagerStore";
-    import { hasEmbedScreen } from "../Stores/EmbedScreensStore";
+    import { embedScreenLayout, hasEmbedScreen } from "../Stores/EmbedScreensStore";
     import { emoteMenuStore } from "../Stores/EmoteStore";
     import { myCameraVisibilityStore } from "../Stores/MyCameraStoreVisibility";
     import { requestVisitCardsStore } from "../Stores/GameStore";
@@ -30,6 +30,7 @@
     import BanMessageContainer from "./TypeMessage/BanMessageContainer.svelte";
     import { textMessageStore } from "../Stores/TypeMessageStore/TextMessageStore";
     import TextMessageContainer from "./TypeMessage/TextMessageContainer.svelte";
+    import { LayoutMode } from "../WebRtc/LayoutManager";
 
     let mainLayout: HTMLDivElement;
 
@@ -50,7 +51,7 @@
             <MenuIcon />
         {/if}
 
-        {#if displayCoWebsiteContainer}
+        {#if $embedScreenLayout === LayoutMode.VideoChat || displayCoWebsiteContainer}
             <CoWebsitesContainer vertical={true} />
         {/if}
     </aside>
